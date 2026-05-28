@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Col·laboradors — UAUU Weddings & Events</title>
+  <style>
+    @font-face {
+      font-family: 'Ogg';
+      src: url('fonts/OGG MEDIUM/Ogg-Medium.otf') format('opentype'),
+           url('fonts/OGG MEDIUM/Ogg-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Inter';
+      src: url('fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #F2EFEE;
+      --dark: #221F1E;
+      --white: #FFFFFF;
+      --text: #221F1E;
+      --text-2: rgba(34,31,30,0.6);
+      --text-3: rgba(34,31,30,0.38);
+      --border: rgba(34,31,30,0.1);
+      --border-2: rgba(34,31,30,0.2);
+      --r-card: 16px;
+      --r-pill: 100px;
+      --h-header: 80px;
+      --px: 10%;
+      --ease: cubic-bezier(.22,1,.36,1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a, button { touch-action: manipulation; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', Georgia, sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────────────────────────
+       MENU OVERLAY
+    ───────────────────────────────────────── */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      padding: 0 var(--px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.38s var(--ease);
+      overscroll-behavior: none;
+    }
+
+    .menu-overlay.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .menu-top {
+      height: var(--h-header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu-close {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 0;
+      transition: color 0.2s;
+    }
+
+    .menu-close:hover { color: #fff; }
+
+    .close-x {
+      width: 16px;
+      height: 16px;
+      display: grid;
+      place-items: center;
+    }
+
+    .menu-logo-wrap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .menu-logo-wrap img { height: 22px; display: block; }
+
+    .menu-top-right {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .menu-nav {
+      padding: 60px 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex: 1;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .menu-nav-item {
+      display: block;
+      font-family: 'Ogg', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(38px, 5.2vw, 72px);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 0;
+      opacity: 0;
+      transform: translateX(-18px);
+      transition: color 0.22s, opacity 0.42s var(--ease), transform 0.42s var(--ease);
+    }
+
+    .menu-nav-item:hover { color: #fff; }
+
+    .menu-nav-item--active { color: #fff !important; }
+    .menu-nav-item--muted  { color: rgba(255,255,255,0.2) !important; }
+
+    .menu-nav:hover .menu-nav-item           { color: rgba(255,255,255,0.2) !important; }
+    .menu-nav:hover .menu-nav-item:hover     { color: #fff !important; }
+
+    .menu-overlay.is-open .menu-nav-item {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .menu-nav-item:nth-child(1) { transition-delay: 0.06s; }
+    .menu-nav-item:nth-child(2) { transition-delay: 0.11s; }
+    .menu-nav-item:nth-child(3) { transition-delay: 0.16s; }
+    .menu-nav-item:nth-child(4) { transition-delay: 0.21s; }
+    .menu-nav-item:nth-child(5) { transition-delay: 0.26s; }
+    .menu-nav-item:nth-child(6) { transition-delay: 0.31s; }
+    .menu-nav-item:nth-child(7) { transition-delay: 0.36s; }
+    .menu-nav-item:nth-child(8) { transition-delay: 0.41s; }
+
+    .menu-footer {
+      margin-top: auto;
+      padding: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .menu-footer-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ─────────────────────────────────────────
+       LANGUAGE SWITCHER (shared styles)
+    ───────────────────────────────────────── */
+    .lang-sw {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-sep {
+      font-size: 11px;
+      color: rgba(34,31,30,0.25);
+      user-select: none;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 2px 0;
+      transition: color 0.2s;
+    }
+
+    .lang-btn:hover { color: var(--text); }
+    .lang-btn.active { color: var(--text); font-weight: 500; }
+
+    /* Dark variant (inside menu) */
+    .lang-sw--dark .lang-sep { color: rgba(255,255,255,0.2); }
+    .lang-sw--dark .lang-btn { color: rgba(255,255,255,0.4); }
+    .lang-sw--dark .lang-btn:hover { color: rgba(255,255,255,0.85); }
+    .lang-sw--dark .lang-btn.active { color: #fff; }
+
+    /* ─────────────────────────────────────────
+       HEADER
+    ───────────────────────────────────────── */
+    .header {
+      position: fixed;
+      inset: 0 0 auto;
+      height: var(--h-header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--px);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .header-logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .header-logo img { height: 30px; display: block; }
+    .header-logo { cursor: pointer; }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .hamburger { display: flex; flex-direction: column; gap: 5px; }
+    .hamburger span { display: block; width: 20px; height: 1px; background: var(--dark); }
+
+    .menu-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px 11px 20px;
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-pill);
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: background 0.3s var(--ease);
+    }
+
+    .header-cta:hover { background: rgba(34,31,30,0.05); }
+
+    .cta-label {
+      position: relative;
+      transition: transform 0.42s var(--ease);
+    }
+
+    .cta-dot {
+      width: 22px;
+      height: 22px;
+      background: var(--dark);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      position: relative;
+      transition: transform 0.42s var(--ease);
+    }
+
+    .cta-dot svg {
+      width: 9px;
+      height: 9px;
+      transition: transform 0.42s var(--ease);
+    }
+
+    .header-cta:hover .cta-dot svg { transform: rotate(45deg); }
+
+    /* ─────────────────────────────────────────
+       PAGE VIEWS
+    ───────────────────────────────────────── */
+    .page {
+      padding-top: var(--h-header);
+      min-height: 100vh;
+      opacity: 1;
+      transition: opacity 0.26s ease;
+    }
+
+    .page.is-hidden { display: none; }
+    .page.is-fading { opacity: 0; pointer-events: none; }
+
+    .page-hero { padding: 60px var(--px) 44px; }
+
+    .page-title {
+      font-family: 'Ogg', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(32px, 4.4vw, 68px);
+      letter-spacing: -0.025em;
+      line-height: 1.07;
+    }
+
+    .page-desc {
+      margin-top: 16px;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-2);
+      max-width: 400px;
+      line-height: 1.65;
+    }
+
+    /* ─────────────────────────────────────────
+       BACK BUTTON
+    ───────────────────────────────────────── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 0;
+      margin-bottom: 20px;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover { color: var(--text); }
+    .back-btn svg { transition: transform 0.2s; }
+    .back-btn:hover svg { transform: translateX(-3px); }
+
+    /* ─────────────────────────────────────────
+       CATEGORY GRID
+    ───────────────────────────────────────── */
+    .category-grid {
+      padding: 0 var(--px) 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .cat-card {
+      position: relative;
+      border-radius: var(--r-card);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 3/4;
+      background: #c8c4c0;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+
+    .cat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 44px rgba(34,31,30,0.16);
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s var(--ease);
+    }
+
+    .cat-card:hover img { transform: scale(1.05); }
+
+    .cat-card--dark {
+      background: var(--dark);
+    }
+
+    .cat-card--dark img,
+    .cat-card--dark .cat-overlay { display: none; }
+
+.cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(34,31,30,0.76) 0%, rgba(34,31,30,0.08) 55%, transparent 100%);
+    }
+
+    .cat-label {
+      position: absolute;
+      bottom: 22px;
+      left: 22px;
+      right: 22px;
+      font-family: 'Ogg', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(17px, 1.5vw, 24px);
+      line-height: 1.18;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    /* ─────────────────────────────────────────
+       COLLABORATOR GRID
+    ───────────────────────────────────────── */
+    .collab-grid {
+      padding: 0 var(--px) 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .collab-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border-radius: var(--r-card);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+
+    .collab-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 38px rgba(34,31,30,0.1);
+    }
+
+    .collab-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #ddd;
+      flex-shrink: 0;
+    }
+
+    .collab-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s var(--ease);
+    }
+
+    .collab-card:hover .collab-photo img { transform: scale(1.06); }
+
+    .collab-body {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .collab-tag {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 7px;
+    }
+
+    .collab-name {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+
+    .collab-loc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-2);
+      line-height: 1.5;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .collab-footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      gap: 10px;
+    }
+
+    .collab-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .collab-phone {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-2);
+    }
+
+    .collab-email {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-3);
+      word-break: break-all;
+    }
+
+    .collab-arrow {
+      width: 28px;
+      height: 28px;
+      background: var(--dark);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 0.22s, background 0.22s;
+    }
+
+    .collab-card:hover .collab-arrow { transform: translate(2px,-2px); background: #3a3735; }
+    .collab-arrow svg { width: 10px; height: 10px; }
+
+    .collab-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--text-2);
+      background: rgba(34,31,30,0.05);
+      border-radius: 6px;
+      padding: 4px 8px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .collab-note-icon { opacity: 0.5; flex-shrink: 0; }
+
+
+    /* ─────────────────────────────────────────
+       CAROUSEL
+    ───────────────────────────────────────── */
+    .carousel-track {
+      display: flex;
+      transition: transform 0.42s var(--ease);
+      height: 100%;
+    }
+
+    .carousel-slide {
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 2;
+    }
+
+    .carousel-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .carousel-dot::after {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot.is-active::after {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    /* ─────────────────────────────────────────
+       VENUE PICKER
+    ───────────────────────────────────────── */
+    .venue-grid {
+      padding: 0 var(--px) 80px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    /* ─────────────────────────────────────────
+       VENUE CONTACT CARDS
+    ───────────────────────────────────────── */
+    .venue-contact-grid {
+      padding: 0 var(--px) 80px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .venue-contact-card {
+      background: var(--white);
+      border-radius: var(--r-card);
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vc-type {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 8px;
+    }
+
+    .vc-name {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .vc-phone {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-2);
+    }
+
+    .vc-note {
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-3);
+      margin-top: 6px;
+      line-height: 1.55;
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    /* ── 1200px · laptop ── */
+    @media (max-width: 1200px) {
+      .category-grid,
+      .collab-grid,
+      .venue-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ── 900px · tablet landscape ── */
+    @media (max-width: 900px) {
+      :root { --px: 5%; }
+      .category-grid,
+      .collab-grid,
+      .venue-grid { grid-template-columns: repeat(2, 1fr); }
+      .venue-contact-grid { grid-template-columns: repeat(2, 1fr); }
+      .menu-nav-item { font-size: clamp(34px, 5.2vw, 72px); }
+    }
+
+    /* ── 768px · tablet portrait ── */
+    @media (max-width: 768px) {
+      .menu-nav { padding-top: 40px; }
+      .menu-nav-item { font-size: clamp(30px, 5.5vw, 54px); line-height: 1.3; }
+      .collab-grid { grid-template-columns: repeat(2, 1fr); }
+      .page-title { font-size: clamp(26px, 5.5vw, 52px); }
+    }
+
+    /* ── 600px · telèfon ── */
+    @media (max-width: 600px) {
+      :root { --px: 16px; --h-header: 60px; }
+
+      /* Header */
+      .menu-label { display: none; }
+      .lang-sw--header { display: none; }
+      .header-cta .cta-label { display: none; }
+      .header-cta { padding: 9px 12px; }
+
+      /* Page */
+      .page-hero { padding: 32px var(--px) 24px; }
+      .page-desc { max-width: 100%; font-size: 13px; }
+
+      /* Grids */
+      .category-grid,
+      .venue-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .collab-grid { grid-template-columns: 1fr; }
+      .venue-contact-grid { grid-template-columns: 1fr; }
+
+      /* Collab cards */
+      .collab-body { padding: 14px 16px; }
+      .collab-name { font-size: 14px; }
+      .collab-loc  { font-size: 12px; margin-bottom: 10px; }
+      .collab-note { font-size: 9px; padding: 3px 7px; }
+
+      /* Menu */
+      .menu-nav { padding-top: 32px; }
+      .menu-nav-item { font-size: clamp(26px, 7vw, 38px); line-height: 1.35; }
+      .menu-footer { padding: 20px 0; }
+      .menu-top-right { display: none; }
+
+      /* Venue contact cards */
+      .venue-contact-card { padding: 18px 18px 16px; }
+      .vc-name { font-size: 14px; }
+    }
+
+    /* ── 420px · telèfon petit ── */
+    @media (max-width: 420px) {
+      :root { --px: 14px; }
+      .category-grid,
+      .venue-grid { gap: 8px; }
+      .cat-label { font-size: clamp(14px, 4.2vw, 20px); bottom: 14px; left: 14px; right: 14px; }
+      .menu-nav-item { font-size: clamp(22px, 7vw, 32px); }
+      .collab-name { font-size: 13px; }
+    }
+
+    /* ── desactiva hover en dispositius tàctils ── */
+    @media (hover: none) {
+      .cat-card:hover { transform: none; box-shadow: none; }
+      .cat-card:hover img { transform: none; }
+      .collab-card:hover { transform: none; box-shadow: none; }
+      .collab-card:hover .collab-photo img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       MENU OVERLAY
+  ════════════════════════════════════════ -->
+  <div class="menu-overlay" id="menu-overlay" aria-modal="true" role="dialog" aria-hidden="true">
+
+    <div class="menu-top">
+      <button class="menu-close" id="menu-close">
+        <span class="close-x">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span data-i18n="closeBtn">Tancar</span>
+      </button>
+
+      <div class="menu-logo-wrap">
+        <img src="logos/UAUU_lletra_blanca-02_ajustat.png" alt="UAUU Weddings &amp; Events">
+      </div>
+
+      <div class="menu-top-right">
+        <span data-i18n="tagline">Weddings &amp; Events</span>
+      </div>
+    </div>
+
+    <nav class="menu-nav" id="menu-nav" aria-label="Categories">
+      <!-- filled by JS -->
+    </nav>
+
+    <div class="menu-footer">
+      <span class="menu-footer-label">UAUU &copy; <span id="copy-year"></span></span>
+      <div class="lang-sw lang-sw--dark" id="lang-sw-menu">
+        <button class="lang-btn active" data-lang="ca">CA</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════ -->
+  <header class="header">
+    <button class="header-left" id="menu-open" aria-label="Obrir menú">
+      <div class="hamburger"><span></span><span></span></div>
+      <span class="menu-label" data-i18n="menuBtn">Menú</span>
+    </button>
+
+    <div class="header-logo" id="logo-home">
+      <img src="logos/UAUU_lletra_negra_estret.png" alt="UAUU Weddings &amp; Events">
+    </div>
+
+    <div class="header-right">
+      <div class="lang-sw lang-sw--header" id="lang-sw-header">
+        <button class="lang-btn active" data-lang="ca">CA</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="https://portal.uauu.cat/" class="header-cta">
+        <span class="cta-label" data-i18n="portalBtn">Tornar al portal</span>
+        <span class="cta-dot">
+          <svg viewBox="0 0 10 10" fill="none">
+            <path d="M2 8L8 2M8 2H3.5M8 2V6.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       VIEW: INDEX
+  ════════════════════════════════════════ -->
+  <main class="page" id="view-index">
+    <div class="page-hero">
+      <h1 class="page-title" id="page-title-index"></h1>
+      <p class="page-desc" id="page-desc-index"></p>
+    </div>
+    <div class="category-grid" id="cat-grid"></div>
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       VIEW: DETAIL
+  ════════════════════════════════════════ -->
+  <main class="page is-hidden" id="view-detail">
+    <div class="page-hero">
+      <button class="back-btn" id="back-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span data-i18n="backBtn">Totes les categories</span>
+      </button>
+      <h1 class="page-title" id="detail-title"></h1>
+      <p class="page-desc" id="detail-desc"></p>
+    </div>
+    <div class="collab-grid" id="collab-grid"></div>
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       VIEW: VENUE PICKER
+  ════════════════════════════════════════ -->
+  <main class="page is-hidden" id="view-venues">
+    <div class="page-hero">
+      <button class="back-btn" id="venues-back-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span data-i18n="backBtn">Totes les categories</span>
+      </button>
+      <h1 class="page-title" data-i18n="venuesTitle">La vostra finca</h1>
+      <p class="page-desc" data-i18n="venuesDesc">Seleccioneu la vostra finca per veure els contactes específics.</p>
+    </div>
+    <div class="venue-grid" id="venue-grid"></div>
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       VIEW: VENUE DETAIL
+  ════════════════════════════════════════ -->
+  <main class="page is-hidden" id="view-venue-detail">
+    <div class="page-hero">
+      <button class="back-btn" id="venue-detail-back-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span data-i18n="venuesTitle">La vostra finca</span>
+      </button>
+      <h1 class="page-title" id="venue-detail-title"></h1>
+    </div>
+    <div class="venue-contact-grid" id="venue-contact-grid"></div>
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       SCRIPT
+  ════════════════════════════════════════ -->
+  <script>
+    /* ── DATA ── */
+    const categoryData = [
+      {
+        id: 'allotjament',
+        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
+        collaborators: [
+          {
+            name: 'Hotel Amèrica Igualada',
+            tags: { ca: 'Hotel Urbà', es: 'Hotel Urbano', en: 'Urban Hotel' },
+            loc: 'Igualada',
+            phone: '+34 938 031 000',
+            email: null,
+            web: 'https://www.hotel-america.es/es/',
+            note: { ca: '10% de descompte. Codi: MASIA10', es: '10% de descuento. Código: MASIA10', en: '10% discount. Code: MASIA10' },
+            image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80'
+          },
+        ]
+      },
+      {
+        id: 'transport',
+        image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80',
+        collaborators: [
+          { name: 'Solé Grau S.L.',  tags: { ca: 'Autobús i taxi', es: 'Autobús y taxi', en: 'Bus & taxi' }, loc: '', phone: '+34 973 551 671', email: null,                        web: 'https://autocarssolegrau.com/microbusos/', note: { ca: '5% de descompte. Codi: UAUU5', es: '5% de descuento. Código: UAUU5', en: '5% discount. Code: UAUU5' }, image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600&q=80' },
+          { name: 'Autocars Julià',  tags: { ca: 'Autobús', es: 'Autobús', en: 'Bus' },                     loc: '', phone: '+34 618 400 360', email: 'csaura@julia.net',          web: 'https://www.autocaresjulia.es/',            note: null, image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80' },
+          { name: 'Minibus Fusion',  tags: { ca: 'Minibús', es: 'Minibús', en: 'Minibus' },                 loc: '', phone: '+34 651 303 466', email: 'microbusjordi@gmail.com',   web: null,                                        note: { ca: '5% de descompte clients UAUU', es: '5% de descuento clientes UAUU', en: '5% discount for UAUU clients' }, image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80' },
+          { name: 'Tot Taxi',        tags: { ca: 'Taxi', es: 'Taxi', en: 'Taxi' },                          loc: '', phone: '+34 672 736 472', email: null,                        web: 'https://www.tot-taxi.cat/',                 note: null, image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80' },
+          { name: 'Sergi Gassó',    tags: { ca: 'Taxi', es: 'Taxi', en: 'Taxi' },                          loc: '', phone: '+34 608 148 304', email: 'taxisergigasso@gmail.com',  web: null,                                        note: null, image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80' },
+        ]
+      },
+      {
+        id: 'fotografia',
+        carousel: true,
+        image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80',
+        collaborators: [
+          { name: 'Marie Marry Me',           tags: { ca: 'Fotografia', es: 'Fotografía', en: 'Photography' },                         loc: '', phone: '+34 684 393 929', email: 'forever@mariemarryme.com',    social: '@mariemarryme',            note: null, photos: ['https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80','https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80','https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80'] },
+          { name: 'Atypical Wedding',         tags: { ca: 'Fotografia', es: 'Fotografía', en: 'Photography' },                         loc: '', phone: '+34 605 884 296', email: 'info@atypicalphotos.com',    social: '@atypicalwedding',         note: null, photos: ['https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80','https://images.unsplash.com/photo-1510771463146-e89e6e86560e?w=600&q=80','https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80'] },
+          { name: 'Tarannà Estudi Creatiu',   tags: { ca: 'Fotografia i vídeo', es: 'Fotografía y vídeo', en: 'Photography & video' }, loc: '', phone: '+34 660 237 757', email: 'hola@estuditaranna.com',     social: '@taranna_estudicreatiu',   note: null, photos: ['https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80','https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80','https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=600&q=80'] },
+          { name: 'Northmiles',               tags: { ca: 'Fotografia', es: 'Fotografía', en: 'Photography' },                         loc: '', phone: '+34 611 197 979', email: 'hola@northmiles.com',        social: '@northmiles',              note: null, photos: ['https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=600&q=80','https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80','https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80'] },
+          { name: 'Elm Murcia',               tags: { ca: 'Fotografia', es: 'Fotografía', en: 'Photography' },                         loc: '', phone: '+34 696 148 225', email: 'info@elmmurcia.com',         social: '@elm.murcia',              note: null, photos: ['https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80','https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=80','https://images.unsplash.com/photo-1510771463146-e89e6e86560e?w=600&q=80'] },
+          { name: 'Joel Caralt',              tags: { ca: 'Fotografia', es: 'Fotografía', en: 'Photography' },                         loc: '', phone: '+34 654 705 026', email: 'joel.caralt@gmail.com',      social: '@joelcaralt',              note: null, photos: ['https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80','https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80','https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80'] },
+          { name: 'Laura Chacón Photography', tags: { ca: 'Fotografia', es: 'Fotografía', en: 'Photography' },                         loc: '', phone: '+34 649 412 783', email: 'info@laurachacon.es',        social: '@laurachacon_photography', note: null, photos: ['https://images.unsplash.com/photo-1510771463146-e89e6e86560e?w=600&q=80','https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=600&q=80','https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80'] },
+        ]
+      },
+      {
+        id: 'cerimoniants',
+        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+        collaborators: [
+          { name: 'Sergi Atmetlla', tags: { ca: 'Cerimoniant', es: 'Oficiant', en: 'Officiant' },                                       loc: 'CA · ES',      phone: '+34 626 744 383', email: 'hola.nexuswedding@gmail.com', web: 'https://www.nexuswedding.com/',    note: null, image: 'https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80' },
+          { name: 'Elena Nieto',    tags: { ca: 'Cerimoniant i animació', es: 'Oficiant y animación', en: 'Officiant & entertainment' }, loc: '',             phone: '+34 623 513 503', email: 'info@soyelenanieto.com',      web: 'https://www.soyelenanieto.com/',   note: null, image: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80' },
+          { name: 'Txema López',    tags: { ca: 'Cerimoniant', es: 'Oficiant', en: 'Officiant' },                                       loc: 'CA · ES · EN', phone: '+34 600 777 266', email: 'hola@bodacivil.org',          web: 'https://www.bodacivil.org/',       note: null, image: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=600&q=80' },
+        ]
+      },
+      {
+        id: 'bellesa',
+        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80',
+        collaborators: [
+          { name: 'La novia más bonita', tags: { ca: 'Perruqueria i maquillatge', es: 'Peluquería y maquillaje', en: 'Hair & make-up' }, loc: '', phone: '+34 640 884 632', email: 'info@lanoviamasbonita.com', web: 'https://lanoviamasbonita.com/', note: null, image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80' },
+        ]
+      },
+      {
+        id: 'finca',
+        isVenuePicker: true,
+        image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+        collaborators: []
+      },
+    ];
+
+    /* ── VENUE DATA ── */
+    const venueData = [
+      {
+        id: 'canmacia',
+        image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+        names: { ca: 'Can Macià', es: 'Can Macià', en: 'Can Macià' },
+        contacts: [
+          { types: { ca: 'DJ i Il·luminació',   es: 'DJ e Iluminación',    en: 'DJ & Lighting' },          name: 'Carlos Ruiz',     phone: '+34 677 549 838', note: null },
+          { types: { ca: 'Cerimònia Religiosa', es: 'Ceremonia Religiosa', en: 'Religious Ceremony' },      name: 'Mossèn Eduard',   phone: '+34 933 800 040', note: null },
+          { types: { ca: 'Floristeria',          es: 'Floristería',         en: 'Florist' },                 name: 'Les Flors Igualada', phone: null,           note: null },
+        ]
+      },
+      {
+        id: 'canalzina',
+        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+        names: { ca: "Ca n'Alzina", es: "Ca n'Alzina", en: "Ca n'Alzina" },
+        contacts: [
+          { types: { ca: 'DJ i Il·luminació',   es: 'DJ e Iluminación',    en: 'DJ & Lighting' },          name: 'Marc Serra',              phone: '+34 618 391 525', note: null },
+          { types: { ca: 'Cerimònia Civil',      es: 'Ceremonia Civil',     en: 'Civil Ceremony' },         name: 'Ajuntament de Rubió',     phone: '+34 938 094 181', note: null },
+          { types: { ca: 'Cerimònia Religiosa', es: 'Ceremonia Religiosa', en: 'Religious Ceremony' },      name: 'Mossèn Enric',            phone: '+34 938 094 101', note: { ca: 'Atenció: dimecres i diumenges a la tarda', es: 'Atención: miércoles y domingos por la tarde', en: 'Office hours: Wed & Sun afternoons' } },
+          { types: { ca: 'Floristeria',          es: 'Floristería',         en: 'Florist' },                 name: 'Les Flors Igualada',      phone: null,              note: null },
+        ]
+      },
+      {
+        id: 'masvivencs',
+        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
+        names: { ca: 'Mas Vivencs', es: 'Mas Vivencs', en: 'Mas Vivencs' },
+        contacts: [
+          { types: { ca: 'DJ i Il·luminació', es: 'DJ e Iluminación', en: 'DJ & Lighting' }, name: 'Adrián', phone: '+34 695 448 919', note: null },
+        ]
+      },
+      {
+        id: 'castelldetous',
+        image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80',
+        names: { ca: 'Castell de Tous', es: 'Castell de Tous', en: 'Castell de Tous' },
+        contacts: [
+          { types: { ca: 'DJ i Il·luminació',   es: 'DJ e Iluminación',    en: 'DJ & Lighting' },          name: 'Adrián',                          phone: '+34 695 448 919', note: null },
+          { types: { ca: 'Cerimònia Civil',      es: 'Ceremonia Civil',     en: 'Civil Ceremony' },         name: 'Ajuntament de St. Martí de Tous', phone: '+34 938 096 002', note: null },
+          { types: { ca: 'Cerimònia Religiosa', es: 'Ceremonia Religiosa', en: 'Religious Ceremony' },      name: 'Padre Alejandro',                 phone: '+34 613 237 678', note: { ca: 'Atenció: dimarts de 17:00h a 19:00h', es: 'Atención: martes de 17:00h a 19:00h', en: 'Office hours: Tue 17:00–19:00' } },
+          { types: { ca: 'Floristeria',          es: 'Floristería',         en: 'Florist' },                 name: 'Les Flors Igualada',              phone: null,              note: null },
+        ]
+      },
+    ];
+
+    /* ── TRANSLATIONS ── */
+    const i18n = {
+      ca: {
+        menuBtn:   'Menú',
+        closeBtn:  'Tancar',
+        portalBtn: 'Tornar al portal',
+        tagline:   'Weddings & Events',
+        backBtn:    'Totes les categories',
+        venuesTitle: "Contactes\nd'interès",
+        venuesDesc:  'Seleccioneu la vostra finca per veure els contactes específics.',
+        pageTitle:  'Els col·laboradors\nrecomanats',
+        pageDesc:   'Contactes de confiança seleccionats per a la vostra celebració.',
+        categories: [
+          { name: 'Allotjament',               desc: 'Hotels i allotjaments propers a les nostres finques.' },
+          { name: 'Autobusos\ni taxis',         desc: 'Transport per als vostres convidats el dia del casament.' },
+          { name: 'Fotografia\ni vídeo',        desc: 'Fotògrafs i videomakers especialitzats en casaments.' },
+          { name: 'Cerimoniants',               desc: 'Professionals per a la cerimònia civil o simbòlica.' },
+          { name: 'Perruqueria\ni maquillatge', desc: 'Estilistes per a la núvia i el nuvi.' },
+          { name: "Contactes\nd'interès",         desc: 'Contactes específics de la vostra finca.' },
+        ]
+      },
+      es: {
+        menuBtn:    'Menú',
+        closeBtn:   'Cerrar',
+        portalBtn:  'Volver al portal',
+        tagline:    'Weddings & Events',
+        backBtn:    'Todas las categorías',
+        venuesTitle: 'Contactos\nde interés',
+        venuesDesc:  'Seleccionad vuestra finca para ver sus contactos específicos.',
+        pageTitle:  'Los colaboradores\nrecomendados',
+        pageDesc:   'Contactos de confianza seleccionados para vuestra celebración.',
+        categories: [
+          { name: 'Alojamiento',             desc: 'Hoteles y alojamientos próximos a nuestras fincas.' },
+          { name: 'Autobuses\ny taxis',       desc: 'Transporte para vuestros invitados el día de la boda.' },
+          { name: 'Fotografía\ny vídeo',      desc: 'Fotógrafos y videógrafos especializados en bodas.' },
+          { name: 'Oficiantes',               desc: 'Profesionales para la ceremonia civil o simbólica.' },
+          { name: 'Peluquería\ny maquillaje', desc: 'Estilistas para la novia y el novio.' },
+          { name: 'Contactos\nde interés',      desc: 'Contactos específicos de vuestra finca.' },
+        ]
+      },
+      en: {
+        menuBtn:    'Menu',
+        closeBtn:   'Close',
+        portalBtn:  'Back to portal',
+        tagline:    'Weddings & Events',
+        backBtn:    'All categories',
+        venuesTitle: 'Contacts\nof interest',
+        venuesDesc:  'Select your venue to see its specific contacts.',
+        pageTitle:  'The recommended\ncollaborators',
+        pageDesc:   'Trusted contacts selected for your celebration.',
+        categories: [
+          { name: 'Accommodation',       desc: 'Hotels and accommodation near our venues.' },
+          { name: 'Buses\n& taxis',       desc: 'Transport for your guests on the wedding day.' },
+          { name: 'Photography\n& video', desc: 'Photographers and videographers specialised in weddings.' },
+          { name: 'Officiants',           desc: 'Professionals for civil or symbolic ceremonies.' },
+          { name: 'Hair\n& make-up',      desc: 'Stylists for the bride and groom.' },
+          { name: 'Contacts\nof interest',  desc: 'Specific contacts for your venue.' },
+        ]
+      }
+    };
+
+    /* ── STATE ── */
+    let lang = 'ca';
+    let activeCatIndex = null;
+    let activeVenueId  = null;
+
+    /* ── LANGUAGE ── */
+    function setLang(l) {
+      lang = l;
+      document.documentElement.lang = l;
+
+      // Sync all lang buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === l);
+      });
+
+      // Update data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (key === 'venuesTitle') return; // handled separately below
+        if (i18n[l][key] !== undefined) el.textContent = i18n[l][key];
+      });
+
+      // Update page titles (preserves newline as <br>)
+      setMultilineTitle('page-title-index', i18n[l].pageTitle);
+      document.getElementById('page-desc-index').textContent = i18n[l].pageDesc;
+
+      // venuesTitle appears both as data-i18n text AND as a multiline page title — handle separately
+      document.querySelectorAll('[data-i18n="venuesTitle"]').forEach(el => {
+        if (el.tagName === 'H1') el.innerHTML = i18n[l].venuesTitle.replace('\n', '<br>');
+        else el.textContent = i18n[l].venuesTitle.replace('\n', ' ');
+      });
+
+      // Rebuild category grid
+      buildCategoryGrid();
+
+      // Update detail view if visible
+      if (activeCatIndex !== null && !document.getElementById('view-detail').classList.contains('is-hidden')) {
+        const cat = i18n[l].categories[activeCatIndex];
+        setMultilineTitle('detail-title', cat.name);
+        document.getElementById('detail-desc').textContent = cat.desc;
+        buildCollabs(categoryData[activeCatIndex].collaborators, { carousel: categoryData[activeCatIndex].carousel, instagramFirst: categoryData[activeCatIndex].carousel });
+      }
+
+      // Update venue views if visible
+      if (!document.getElementById('view-venues').classList.contains('is-hidden')) {
+        buildVenueGrid();
+      }
+      if (activeVenueId !== null && !document.getElementById('view-venue-detail').classList.contains('is-hidden')) {
+        const v = venueData.find(v => v.id === activeVenueId);
+        document.getElementById('venue-detail-title').textContent = v.names[l];
+        buildVenueContacts(activeVenueId);
+      }
+
+      // Rebuild menu nav
+      buildMenuNav();
+    }
+
+    function setMultilineTitle(id, text) {
+      const el = document.getElementById(id);
+      el.innerHTML = text.replace('\n', '<br>');
+    }
+
+    /* ── CATEGORY GRID ── */
+    function buildCategoryGrid() {
+      const grid = document.getElementById('cat-grid');
+      grid.innerHTML = '';
+      categoryData.forEach((cat, idx) => {
+        const t = i18n[lang].categories[idx];
+        const el = document.createElement('div');
+        el.className = 'cat-card' + (cat.isVenuePicker ? ' cat-card--dark' : '');
+        el.innerHTML = `
+          <img src="${cat.image}" alt="${t.name.replace('\n',' ')}" loading="lazy">
+          <div class="cat-overlay"></div>
+          <div class="cat-label">${t.name}</div>
+        `;
+        el.addEventListener('click', () => cat.isVenuePicker ? showVenuePicker() : showDetail(idx));
+        grid.appendChild(el);
+      });
+    }
+
+    /* ── MENU NAV ── */
+    function buildMenuNav() {
+      const nav = document.getElementById('menu-nav');
+      nav.innerHTML = '';
+      categoryData.forEach((cat, idx) => {
+        const t = i18n[lang].categories[idx];
+        const btn = document.createElement('button');
+        btn.className = 'menu-nav-item';
+        btn.textContent = t.name.replace('\n', ' ');
+        btn.addEventListener('click', () => {
+          closeMenu();
+          cat.isVenuePicker ? showVenuePicker() : showDetail(idx);
+        });
+        nav.appendChild(btn);
+      });
+    }
+
+    /* ── COLLABORATOR GRID ── */
+    function buildCollabs(collabs, opts = {}) {
+      const grid = document.getElementById('collab-grid');
+      grid.innerHTML = '';
+      collabs.forEach(c => {
+        const href = opts.instagramFirst
+          ? (c.social ? `https://instagram.com/${c.social.replace('@','')}` : `tel:${c.phone.replace(/\s/g,'')}`)
+          : (c.web || (c.social ? `https://instagram.com/${c.social.replace('@','')}` : null) || `tel:${c.phone.replace(/\s/g,'')}`);
+        const isExternal = opts.instagramFirst ? !!c.social : !!(c.web || c.social);
+        const noteHtml = (c.note && c.note[lang]) ? `<div class="collab-note">${c.note[lang]}</div>` : '';
+        const locHtml  = c.loc ? `<div class="collab-loc">${c.loc}</div>` : '';
+
+        let photoHtml;
+        if (opts.carousel && c.photos && c.photos.length > 1) {
+          const slides = c.photos.map(p => `<div class="carousel-slide"><img src="${p}" alt="${c.name}" loading="lazy"></div>`).join('');
+          const dots   = c.photos.map((_, i) => `<button class="carousel-dot${i === 0 ? ' is-active' : ''}" data-idx="${i}" aria-label="Foto ${i+1}"></button>`).join('');
+          photoHtml = `<div class="collab-photo" style="position:relative;overflow:hidden;" data-carousel>
+            <div class="carousel-track">${slides}</div>
+            <div class="carousel-dots">${dots}</div>
+          </div>`;
+        } else {
+          const img = c.photos ? c.photos[0] : c.image;
+          photoHtml = `<div class="collab-photo"><img src="${img}" alt="${c.name}" loading="lazy"></div>`;
+        }
+
+        const el = document.createElement('a');
+        el.className = 'collab-card';
+        el.href = href;
+        if (isExternal) { el.target = '_blank'; el.rel = 'noopener'; }
+        el.innerHTML = `
+          ${photoHtml}
+          <div class="collab-body">
+            <div class="collab-tag">${c.tags[lang]}</div>
+            <div class="collab-name">${c.name}</div>
+            ${locHtml}
+            ${noteHtml}
+            <div class="collab-footer">
+              <div class="collab-contacts">
+                <span class="collab-phone">${c.phone}</span>
+                ${c.email ? `<span class="collab-email">${c.email}</span>` : ''}
+              </div>
+              <span class="collab-arrow">
+                <svg viewBox="0 0 10 10" fill="none">
+                  <path d="M2 8L8 2M8 2H3.5M8 2V6.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+      if (opts.carousel) initCarousels();
+    }
+
+    function initCarousels() {
+      document.querySelectorAll('[data-carousel]').forEach(carousel => {
+        const track = carousel.querySelector('.carousel-track');
+        const dots  = Array.from(carousel.querySelectorAll('.carousel-dot'));
+        let current = 0;
+
+        function goTo(idx) {
+          current = idx;
+          track.style.transform = `translateX(-${idx * 100}%)`;
+          dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+        }
+
+        dots.forEach((dot, i) => dot.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          goTo(i);
+        }));
+
+        let startX = 0;
+        carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+        carousel.addEventListener('touchend', e => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) goTo(Math.max(0, Math.min(dots.length - 1, current + (diff > 0 ? 1 : -1))));
+        });
+      });
+    }
+
+    /* ── VIEW TRANSITIONS ── */
+    function transitionTo(from, to, setup) {
+      from.classList.add('is-fading');
+      setTimeout(() => {
+        from.classList.add('is-hidden');
+        from.classList.remove('is-fading');
+        setup();
+        to.classList.remove('is-hidden');
+        to.classList.add('is-fading');
+        requestAnimationFrame(() => {
+          to.classList.remove('is-fading');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }, 260);
+    }
+
+    function showDetail(idx) {
+      activeCatIndex = idx;
+      const cat = i18n[lang].categories[idx];
+      const indexView  = document.getElementById('view-index');
+      const detailView = document.getElementById('view-detail');
+      const isOnDetail = !detailView.classList.contains('is-hidden');
+
+      if (isOnDetail) {
+        setMultilineTitle('detail-title', cat.name);
+        document.getElementById('detail-desc').textContent = cat.desc;
+        buildCollabs(categoryData[idx].collaborators, { carousel: categoryData[idx].carousel, instagramFirst: categoryData[idx].carousel });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        transitionTo(indexView, detailView, () => {
+          setMultilineTitle('detail-title', cat.name);
+          document.getElementById('detail-desc').textContent = cat.desc;
+          buildCollabs(categoryData[idx].collaborators, { carousel: categoryData[idx].carousel, instagramFirst: categoryData[idx].carousel });
+        });
+      }
+    }
+
+    document.getElementById('back-btn').addEventListener('click', () => {
+      activeCatIndex = null;
+      transitionTo(document.getElementById('view-detail'), document.getElementById('view-index'), () => {});
+    });
+
+    /* ── VENUE PICKER ── */
+    function buildVenueGrid() {
+      const grid = document.getElementById('venue-grid');
+      grid.innerHTML = '';
+      venueData.forEach(v => {
+        const el = document.createElement('div');
+        el.className = 'cat-card';
+        el.innerHTML = `
+          <img src="${v.image}" alt="${v.names[lang]}" loading="lazy">
+          <div class="cat-overlay"></div>
+          <div class="cat-label">${v.names[lang]}</div>
+        `;
+        el.addEventListener('click', () => showVenueDetail(v.id));
+        grid.appendChild(el);
+      });
+    }
+
+    function buildVenueContacts(venueId) {
+      const venue = venueData.find(v => v.id === venueId);
+      const grid  = document.getElementById('venue-contact-grid');
+      grid.innerHTML = '';
+      venue.contacts.forEach(c => {
+        const noteHtml = (c.note && c.note[lang])
+          ? `<div class="vc-note">${c.note[lang]}</div>` : '';
+        const phoneHtml = c.phone
+          ? `<div class="vc-phone">${c.phone}</div>` : '';
+        const el = document.createElement('div');
+        el.className = 'venue-contact-card';
+        el.innerHTML = `
+          <div class="vc-type">${c.types[lang]}</div>
+          <div class="vc-name">${c.name}</div>
+          ${phoneHtml}
+          ${noteHtml}
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function showVenuePicker() {
+      const all = ['view-index','view-detail','view-venue-detail'];
+      const current = all.find(id => !document.getElementById(id).classList.contains('is-hidden'))
+        || 'view-index';
+      activeCatIndex = null;
+      activeVenueId  = null;
+      transitionTo(document.getElementById(current), document.getElementById('view-venues'), () => {
+        buildVenueGrid();
+      });
+    }
+
+    function showVenueDetail(venueId) {
+      activeVenueId = venueId;
+      const venue   = venueData.find(v => v.id === venueId);
+      transitionTo(document.getElementById('view-venues'), document.getElementById('view-venue-detail'), () => {
+        document.getElementById('venue-detail-title').textContent = venue.names[lang];
+        buildVenueContacts(venueId);
+      });
+    }
+
+    document.getElementById('venues-back-btn').addEventListener('click', () => {
+      transitionTo(document.getElementById('view-venues'), document.getElementById('view-index'), () => {});
+    });
+
+    document.getElementById('venue-detail-back-btn').addEventListener('click', () => {
+      activeVenueId = null;
+      transitionTo(document.getElementById('view-venue-detail'), document.getElementById('view-venues'), () => {
+        buildVenueGrid();
+      });
+    });
+
+    /* ── MENU ── */
+    function getActiveNavIndex() {
+      if (!document.getElementById('view-index').classList.contains('is-hidden')) return null;
+      const fincaIdx = categoryData.findIndex(c => c.isVenuePicker);
+      if (!document.getElementById('view-venues').classList.contains('is-hidden')) return fincaIdx;
+      if (!document.getElementById('view-venue-detail').classList.contains('is-hidden')) return fincaIdx;
+      return activeCatIndex;
+    }
+
+    function updateMenuHighlight() {
+      const items    = document.querySelectorAll('.menu-nav-item');
+      const activeIdx = getActiveNavIndex();
+      items.forEach((el, i) => {
+        el.classList.remove('menu-nav-item--active', 'menu-nav-item--muted');
+        if (activeIdx === null) return;
+        if (i === activeIdx) el.classList.add('menu-nav-item--active');
+        else                 el.classList.add('menu-nav-item--muted');
+      });
+    }
+
+    let _menuScrollY = 0;
+
+    function openMenu() {
+      _menuScrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top      = `-${_menuScrollY}px`;
+      document.body.style.left     = '0';
+      document.body.style.right    = '0';
+      const overlay = document.getElementById('menu-overlay');
+      overlay.classList.add('is-open');
+      overlay.removeAttribute('aria-hidden');
+      updateMenuHighlight();
+    }
+
+    function closeMenu() {
+      document.body.style.position = '';
+      document.body.style.top      = '';
+      document.body.style.left     = '';
+      document.body.style.right    = '';
+      window.scrollTo(0, _menuScrollY);
+      const overlay = document.getElementById('menu-overlay');
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+    }
+
+    document.getElementById('menu-open').addEventListener('click', openMenu);
+    document.getElementById('menu-close').addEventListener('click', closeMenu);
+
+    document.getElementById('logo-home').addEventListener('click', () => {
+      closeMenu();
+      const views = ['view-detail','view-venues','view-venue-detail'];
+      const active = views.find(id => !document.getElementById(id).classList.contains('is-hidden'));
+      if (active) {
+        activeCatIndex = null;
+        activeVenueId  = null;
+        transitionTo(document.getElementById(active), document.getElementById('view-index'), () => {});
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    /* ── LANG BUTTONS ── */
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    /* ── CTA SWAP ANIMATION ── */
+    (function () {
+      const cta   = document.querySelector('.header-cta');
+      const label = cta.querySelector('.cta-label');
+      const dot   = cta.querySelector('.cta-dot');
+      const GAP   = 10;
+
+      cta.addEventListener('mouseenter', () => {
+        const lw = label.offsetWidth;
+        if (!lw) return; // label hidden on mobile
+        const dw = dot.offsetWidth;
+        label.style.transform = `translateX(${dw + GAP}px)`;
+        dot.style.transform   = `translateX(-${lw + GAP}px)`;
+      });
+
+      cta.addEventListener('mouseleave', () => {
+        label.style.transform = '';
+        dot.style.transform   = '';
+      });
+    })();
+
+    /* ── INIT ── */
+    document.getElementById('copy-year').textContent = new Date().getFullYear();
+    setLang('ca');
+  </script>
+
+</body>
+</html>

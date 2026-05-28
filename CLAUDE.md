@@ -64,3 +64,7 @@
 
 - Tablet/móvil: max-width: 1024px
 - Móvil pequeño: max-width: 480px
+
+## Referencias visuales
+
+Ver `_refs/referencia-estilo.jpg` para el estilo visual de referencia.
