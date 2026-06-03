@@ -1073,8 +1073,7 @@
         names: { ca: 'Castell de Tous', es: 'Castell de Tous', en: 'Castell de Tous' },
         contacts: [
           { types: { ca: 'DJ i Il·luminació',   es: 'DJ e Iluminación',    en: 'DJ & Lighting' },          name: 'Adrián',                          phone: '+34 695 448 919', note: null },
-          { types: { ca: 'Cerimònia Civil',      es: 'Ceremonia Civil',     en: 'Civil Ceremony' },         name: 'Ajuntament de St. Martí de Tous', phone: '+34 938 096 002', note: null },
-          { types: { ca: 'Cerimònia Religiosa', es: 'Ceremonia Religiosa', en: 'Religious Ceremony' },      name: 'Padre Alejandro',                 phone: '+34 613 237 678', note: { ca: 'Atenció: dimarts de 17:00h a 19:00h', es: 'Atención: martes de 17:00h a 19:00h', en: 'Office hours: Tue 17:00–19:00' } },
+{ types: { ca: 'Cerimònia Religiosa', es: 'Ceremonia Religiosa', en: 'Religious Ceremony' },      name: 'Padre Alejandro',                 phone: '+34 613 237 678', note: { ca: 'Atenció: dimarts de 17:00h a 19:00h', es: 'Atención: martes de 17:00h a 19:00h', en: 'Office hours: Tue 17:00–19:00' } },
           { types: { ca: 'Floristeria',          es: 'Floristería',         en: 'Florist' },                 name: 'Les Flors Igualada',              phone: null, email: 'lesflors1@gmail.com', note: null },
         ]
       },
@@ -1369,6 +1368,8 @@
       const detailView = document.getElementById('view-detail');
       const isOnDetail = !detailView.classList.contains('is-hidden');
 
+      history.pushState({view: 'detail', catIndex: idx}, '');
+
       if (isOnDetail) {
         setMultilineTitle('detail-title', cat.name);
         document.getElementById('detail-desc').textContent = cat.desc;
@@ -1383,10 +1384,7 @@
       }
     }
 
-    document.getElementById('back-btn').addEventListener('click', () => {
-      activeCatIndex = null;
-      transitionTo(document.getElementById('view-detail'), document.getElementById('view-index'), () => {});
-    });
+    document.getElementById('back-btn').addEventListener('click', () => history.back());
 
     /* ── VENUE PICKER ── */
     function buildVenueGrid() {
@@ -1435,6 +1433,7 @@
         || 'view-index';
       activeCatIndex = null;
       activeVenueId  = null;
+      history.pushState({view: 'venues'}, '');
       transitionTo(document.getElementById(current), document.getElementById('view-venues'), () => {
         buildVenueGrid();
       });
@@ -1443,22 +1442,16 @@
     function showVenueDetail(venueId) {
       activeVenueId = venueId;
       const venue   = venueData.find(v => v.id === venueId);
+      history.pushState({view: 'venue-detail', venueId: venueId}, '');
       transitionTo(document.getElementById('view-venues'), document.getElementById('view-venue-detail'), () => {
         document.getElementById('venue-detail-title').textContent = venue.names[lang];
         buildVenueContacts(venueId);
       });
     }
 
-    document.getElementById('venues-back-btn').addEventListener('click', () => {
-      transitionTo(document.getElementById('view-venues'), document.getElementById('view-index'), () => {});
-    });
+    document.getElementById('venues-back-btn').addEventListener('click', () => history.back());
 
-    document.getElementById('venue-detail-back-btn').addEventListener('click', () => {
-      activeVenueId = null;
-      transitionTo(document.getElementById('view-venue-detail'), document.getElementById('view-venues'), () => {
-        buildVenueGrid();
-      });
-    });
+    document.getElementById('venue-detail-back-btn').addEventListener('click', () => history.back());
 
     /* ── MENU ── */
     function getActiveNavIndex() {
@@ -1515,6 +1508,7 @@
       if (active) {
         activeCatIndex = null;
         activeVenueId  = null;
+        history.pushState({view: 'index'}, '');
         transitionTo(document.getElementById(active), document.getElementById('view-index'), () => {});
       }
     });
@@ -1549,8 +1543,47 @@
       });
     })();
 
+    /* ── BROWSER HISTORY ── */
+    window.addEventListener('popstate', e => {
+      const state = e.state || {view: 'index'};
+      const allViews = ['view-index', 'view-detail', 'view-venues', 'view-venue-detail'];
+      const currentId = allViews.find(id => !document.getElementById(id).classList.contains('is-hidden')) || 'view-index';
+      const from = document.getElementById(currentId);
+
+      if (state.view === 'index') {
+        activeCatIndex = null;
+        activeVenueId  = null;
+        transitionTo(from, document.getElementById('view-index'), () => {});
+      } else if (state.view === 'detail') {
+        activeCatIndex = state.catIndex;
+        const cat = i18n[lang].categories[state.catIndex];
+        transitionTo(from, document.getElementById('view-detail'), () => {
+          setMultilineTitle('detail-title', cat.name);
+          document.getElementById('detail-desc').textContent = cat.desc;
+          buildCollabs(categoryData[state.catIndex].collaborators, {
+            carousel: categoryData[state.catIndex].carousel,
+            instagramFirst: categoryData[state.catIndex].carousel
+          });
+        });
+      } else if (state.view === 'venues') {
+        activeCatIndex = null;
+        activeVenueId  = null;
+        transitionTo(from, document.getElementById('view-venues'), () => {
+          buildVenueGrid();
+        });
+      } else if (state.view === 'venue-detail') {
+        activeVenueId = state.venueId;
+        const venue = venueData.find(v => v.id === state.venueId);
+        transitionTo(from, document.getElementById('view-venue-detail'), () => {
+          document.getElementById('venue-detail-title').textContent = venue.names[lang];
+          buildVenueContacts(state.venueId);
+        });
+      }
+    });
+
     /* ── INIT ── */
     document.getElementById('copy-year').textContent = new Date().getFullYear();
+    history.replaceState({view: 'index'}, '');
     setLang('ca');
   </script>
 
