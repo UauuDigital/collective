@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="logos/favicon.ico">
+  <link rel="preconnect" href="https://uauu.cat">
+  <link rel="dns-prefetch" href="https://uauu.cat">
   <title>Col·laboradors — UAUU Weddings & Events</title>
   <style>
     @font-face {
@@ -414,7 +416,7 @@
       box-shadow: 0 22px 44px rgba(34,31,30,0.16);
     }
 
-    .cat-card img {
+    .cat-card img, .cat-card video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -422,7 +424,11 @@
       transition: transform 0.55s var(--ease);
     }
 
-    .cat-card:hover img { transform: scale(1.05); }
+    .cat-card:hover img, .cat-card:hover video { transform: scale(1.05); }
+
+    .cat-card--small {
+      aspect-ratio: 3/2;
+    }
 
     .cat-card--dark {
       background: var(--dark);
@@ -483,6 +489,7 @@
       background: #ddd;
       flex-shrink: 0;
     }
+
 
     .collab-photo--empty { background: var(--dark); }
 
@@ -604,7 +611,7 @@
       height: 100%;
     }
 
-    .carousel-slide img {
+    .carousel-slide img, .carousel-slide video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -834,7 +841,7 @@
       </button>
 
       <div class="menu-logo-wrap">
-        <img src="logos/UAUU_lletra_blanca-02_ajustat.png" alt="UAUU Weddings &amp; Events">
+        <img src="logos/UAUU_lletra_blanca-02_ajustat.png" alt="UAUU Weddings &amp; Events" loading="lazy" decoding="async">
       </div>
 
       <div class="menu-top-right">
@@ -868,7 +875,7 @@
     </button>
 
     <div class="header-logo" id="logo-home">
-      <img src="logos/UAUU_lletra_negra_estret.png" alt="UAUU Weddings &amp; Events">
+      <img src="logos/UAUU_lletra_negra_estret.png" alt="UAUU Weddings &amp; Events" fetchpriority="high" decoding="async">
     </div>
 
     <div class="header-right">
@@ -1011,6 +1018,14 @@
         ]
       },
       {
+        id: 'content-creators',
+        carousel: true,
+        video: 'https://uauu.cat/media/collective/content_creator/memoir_7.mp4',
+        collaborators: [
+          { name: 'Memoir Bella', tags: { ca: 'Content Creator', es: 'Content Creator', en: 'Content Creator' }, loc: '', phone: '+34 644 530 070', email: 'hola.memoirbella@gmail.com', web: 'https://www.instagram.com/memoir.bella/', social: '@memoir.bella', socialFirst: true, note: null, videos: ['https://uauu.cat/media/collective/content_creator/memoir_1.mp4','https://uauu.cat/media/collective/content_creator/memoir_2.mp4','https://uauu.cat/media/collective/content_creator/memoir_3.mp4','https://uauu.cat/media/collective/content_creator/memoir_4.mp4','https://uauu.cat/media/collective/content_creator/memoir_5.mp4','https://uauu.cat/media/collective/content_creator/memoir_7.mp4','https://uauu.cat/media/collective/content_creator/memoir_8.mp4','https://uauu.cat/media/collective/content_creator/memoir_9.mp4','https://uauu.cat/media/collective/content_creator/memoir_10.mp4','https://uauu.cat/media/collective/content_creator/memoir_11.mp4','https://uauu.cat/media/collective/content_creator/memoir_12.mp4'] },
+        ]
+      },
+      {
         id: 'cerimoniants',
         image: 'https://uauu.cat/media/collective/portades/cerimoniants.webp',
         collaborators: [
@@ -1030,7 +1045,7 @@
       {
         id: 'finca',
         isVenuePicker: true,
-        image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80',
+        image: 'https://uauu.cat/media/collective/portades/contactes.webp',
         collaborators: []
       },
     ];
@@ -1096,6 +1111,7 @@
           { name: 'Allotjament',               desc: 'Hotels i allotjaments propers a les nostres finques.' },
           { name: 'Autobusos\ni taxis',         desc: 'Transport per als vostres convidats el dia del casament.' },
           { name: 'Fotografia\ni vídeo',        desc: 'Fotògrafs i videomakers especialitzats en casaments.' },
+          { name: 'Content\nCreators',          desc: 'Creadors de contingut digital per a les xarxes socials.' },
           { name: 'Cerimoniants',               desc: 'Professionals per a la cerimònia civil o simbòlica.' },
           { name: 'Perruqueria\ni maquillatge', desc: 'Estilistes per a la núvia i el nuvi.' },
           { name: "Contactes\nd'interès",         desc: 'Contactes específics de la vostra finca.' },
@@ -1116,6 +1132,7 @@
           { name: 'Alojamiento',             desc: 'Hoteles y alojamientos próximos a nuestras fincas.' },
           { name: 'Autobuses\ny taxis',       desc: 'Transporte para vuestros invitados el día de la boda.' },
           { name: 'Fotografía\ny vídeo',      desc: 'Fotógrafos y videógrafos especializados en bodas.' },
+          { name: 'Content\nCreators',        desc: 'Creadores de contenido digital para las redes sociales.' },
           { name: 'Oficiantes',               desc: 'Profesionales para la ceremonia civil o simbólica.' },
           { name: 'Peluquería\ny maquillaje', desc: 'Estilistas para la novia y el novio.' },
           { name: 'Contactos\nde interés',      desc: 'Contactos específicos de vuestra finca.' },
@@ -1136,6 +1153,7 @@
           { name: 'Accommodation',       desc: 'Hotels and accommodation near our venues.' },
           { name: 'Buses\n& taxis',       desc: 'Transport for your guests on the wedding day.' },
           { name: 'Photography\n& video', desc: 'Photographers and videographers specialised in weddings.' },
+          { name: 'Content\nCreators',    desc: 'Digital content creators for social media.' },
           { name: 'Officiants',           desc: 'Professionals for civil or symbolic ceremonies.' },
           { name: 'Hair\n& make-up',      desc: 'Stylists for the bride and groom.' },
           { name: 'Contacts\nof interest',  desc: 'Specific contacts for your venue.' },
@@ -1212,9 +1230,18 @@
       categoryData.forEach((cat, idx) => {
         const t = i18n[lang].categories[idx];
         const el = document.createElement('div');
-        el.className = 'cat-card' + (cat.isVenuePicker ? ' cat-card--dark' : '');
+        el.className = 'cat-card' + (cat.isVenuePicker ? ' cat-card--small' : '');
+        let mediaSrc;
+        if (cat.video) {
+          mediaSrc = `<video src="${cat.video}" autoplay muted loop playsinline></video>`;
+        } else {
+          const imgAttrs = idx === 0
+            ? 'loading="eager" fetchpriority="high" decoding="async"'
+            : 'loading="lazy" decoding="async"';
+          mediaSrc = `<img src="${cat.image}" alt="${t.name.replace('\n',' ')}" ${imgAttrs}>`;
+        }
         el.innerHTML = `
-          <img src="${cat.image}" alt="${t.name.replace('\n',' ')}" loading="lazy">
+          ${mediaSrc}
           <div class="cat-overlay"></div>
           <div class="cat-label">${t.name}</div>
         `;
@@ -1259,23 +1286,38 @@
         const noteHtml = (c.note && c.note[lang]) ? `<div class="collab-note">${c.note[lang]}</div>` : '';
         const locHtml  = c.loc ? `<div class="collab-loc">${c.loc}</div>` : '';
 
+        const carouselArrows = `
+            <button class="carousel-arrow carousel-arrow--prev" aria-label="Anterior"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="carousel-arrow carousel-arrow--next" aria-label="Siguiente"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+
         let photoHtml;
-        if (opts.carousel && c.photos && c.photos.length > 1) {
-          const slides = c.photos.map((p, i) => {
-            const pos = c.positions ? c.positions[i] || 'top' : 'top';
-            return `<div class="carousel-slide"><img src="${p}" alt="${c.name}" loading="lazy" style="object-position:${pos}"></div>`;
+        if (opts.carousel && c.videos && c.videos.length > 0) {
+          const slides = c.videos.map((v, i) => {
+            const srcAttr = i === 0 ? `src="${v}" autoplay` : `data-src="${v}"`;
+            return `<div class="carousel-slide"><video ${srcAttr} muted loop playsinline style="object-position:center"></video></div>`;
           }).join('');
-          const dots   = c.photos.map((_, i) => `<button class="carousel-dot${i === 0 ? ' is-active' : ''}" data-idx="${i}" aria-label="Foto ${i+1}"></button>`).join('');
+          const dots = c.videos.map((_, i) => `<button class="carousel-dot${i === 0 ? ' is-active' : ''}" data-idx="${i}" aria-label="Vídeo ${i+1}"></button>`).join('');
           photoHtml = `<div class="collab-photo" style="position:relative;overflow:hidden;" data-carousel>
             <div class="carousel-track">${slides}</div>
             <div class="carousel-dots">${dots}</div>
-            <button class="carousel-arrow carousel-arrow--prev" aria-label="Anterior"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6.5 2L3.5 5l3 3" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <button class="carousel-arrow carousel-arrow--next" aria-label="Siguiente"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3.5 2l3 3-3 3" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            ${carouselArrows}
+          </div>`;
+        } else if (opts.carousel && c.photos && c.photos.length > 1) {
+          const slides = c.photos.map((p, i) => {
+            const pos = c.positions ? c.positions[i] || 'top' : 'top';
+            const srcAttr = i === 0 ? `src="${p}"` : `data-src="${p}"`;
+            return `<div class="carousel-slide"><img ${srcAttr} alt="${c.name}" loading="lazy" decoding="async" style="object-position:${pos}"></div>`;
+          }).join('');
+          const dots = c.photos.map((_, i) => `<button class="carousel-dot${i === 0 ? ' is-active' : ''}" data-idx="${i}" aria-label="Foto ${i+1}"></button>`).join('');
+          photoHtml = `<div class="collab-photo" style="position:relative;overflow:hidden;" data-carousel>
+            <div class="carousel-track">${slides}</div>
+            <div class="carousel-dots">${dots}</div>
+            ${carouselArrows}
           </div>`;
         } else {
           const img = c.photos ? c.photos[0] : c.image;
           photoHtml = img
-            ? `<div class="collab-photo"><img src="${img}" alt="${c.name}" loading="lazy"></div>`
+            ? `<div class="collab-photo"><img src="${img}" alt="${c.name}" loading="lazy" decoding="async"></div>`
             : `<div class="collab-photo collab-photo--empty"></div>`;
         }
 
@@ -1315,11 +1357,31 @@
         const total = dots.length;
         let current = 0;
 
+        function loadSlide(i) {
+          const el = track.querySelectorAll('.carousel-slide')[i]?.querySelector('img, video');
+          if (el && el.dataset.src) {
+            el.src = el.dataset.src;
+            delete el.dataset.src;
+            if (el.tagName === 'VIDEO') el.load();
+          }
+        }
+
         function goTo(idx) {
           current = (idx + total) % total;
+          loadSlide(current);
+          loadSlide((current + 1) % total);
           track.style.transform = `translateX(-${current * 100}%)`;
           dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+          track.querySelectorAll('.carousel-slide video').forEach((v, i) => {
+            if (i === current) { if (v.src) v.play(); }
+            else v.pause();
+          });
         }
+
+        // Preload slide 2 on hover so first swipe feels instant
+        carousel.closest('.collab-card')?.addEventListener('mouseenter', () => {
+          loadSlide(1);
+        }, { once: true });
 
         const prevBtn = carousel.querySelector('.carousel-arrow--prev');
         const nextBtn = carousel.querySelector('.carousel-arrow--next');
@@ -1394,7 +1456,7 @@
         const el = document.createElement('div');
         el.className = 'cat-card';
         el.innerHTML = `
-          <img src="${v.image}" alt="${v.names[lang]}" loading="lazy">
+          <img src="${v.image}" alt="${v.names[lang]}" loading="lazy" decoding="async">
           <div class="cat-overlay"></div>
           <div class="cat-label">${v.names[lang]}</div>
         `;
