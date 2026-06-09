@@ -1,0 +1,131 @@
+{
+  "categoryData": [
+    {
+      "id": "allotjament",
+      "carousel": true,
+      "image": "https://uauu.cat/media/collective/allotjament/hotel-america/1.webp",
+      "collaborators": [
+        {
+          "name": "Hotel Amèrica Igualada",
+          "tags": { "ca": "Hotel Urbà", "es": "Hotel Urbano", "en": "Urban Hotel" },
+          "loc": "Igualada",
+          "phone": "+34 938 031 000",
+          "email": null,
+          "web": "https://www.hotel-america.es/es/",
+          "note": { "ca": "10% de descompte en reserves web. Codi a consultar amb el coordinador.", "es": "10% de descuento en reservas web. Código a consultar con el coordinador.", "en": "10% discount on web bookings. Code available from the coordinator." },
+          "photos": [
+            "https://uauu.cat/media/collective/allotjament/hotel-america/1.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/2.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/3.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/4.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/5.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/6.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/7.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/8.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/9.webp",
+            "https://uauu.cat/media/collective/allotjament/hotel-america/10.webp"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transport",
+      "image": "https://uauu.cat/media/collective/portades/autobusos-taxis.webp",
+      "collaborators": [
+        { "name": "Solé Grau S.L.",  "tags": { "ca": "Autobús i taxi", "es": "Autobús y taxi", "en": "Bus & taxi" }, "loc": "", "phone": "+34 973 551 671", "email": null,                       "web": "https://autocarssolegrau.com/microbusos/", "note": { "ca": "5% de descompte. Codi: UAUU5", "es": "5% de descuento. Código: UAUU5", "en": "5% discount. Code: UAUU5" }, "image": "https://uauu.cat/media/collective/transport/sole-grau.webp" },
+        { "name": "Autocars Julià",  "tags": { "ca": "Autobús",         "es": "Autobús",         "en": "Bus" },       "loc": "", "phone": "+34 618 400 360", "email": "csaura@julia.net",        "web": "https://autocaresjulia.com/es",           "note": null, "image": "https://uauu.cat/media/collective/transport/autocares-julia.webp" },
+        { "name": "Minibus Fusion",  "tags": { "ca": "Minibús",         "es": "Minibús",         "en": "Minibus" },   "loc": "", "phone": "+34 651 303 466", "email": "microbusjordi@gmail.com", "web": null,                                       "note": { "ca": "5% de descompte clients UAUU", "es": "5% de descuento clientes UAUU", "en": "5% discount for UAUU clients" }, "image": null },
+        { "name": "Tot Taxi",        "tags": { "ca": "Taxi",            "es": "Taxi",            "en": "Taxi" },      "loc": "", "phone": "+34 672 736 472", "email": null,                       "web": "https://www.tot-taxi.cat/",               "note": null, "image": "https://uauu.cat/media/collective/transport/tot-taxi.webp" },
+        { "name": "Sergi Gassó",     "tags": { "ca": "Taxi",            "es": "Taxi",            "en": "Taxi" },      "loc": "", "phone": "+34 608 148 304", "email": "taxisergigasso@gmail.com", "web": null,                                       "note": null, "image": null }
+      ]
+    },
+    {
+      "id": "fotografia",
+      "carousel": true,
+      "image": "https://uauu.cat/media/collective/fotografia/marie-marry-me/8.webp",
+      "collaborators": [
+        { "name": "Marie Marry Me",           "tags": { "ca": "Fotografia", "es": "Fotografía", "en": "Photography" },                         "loc": "", "phone": "+34 684 393 929", "email": "forever@mariemarryme.com",    "social": "@mariemarryme",            "note": null, "photos": ["https://uauu.cat/media/collective/fotografia/marie-marry-me/1.webp","https://uauu.cat/media/collective/fotografia/marie-marry-me/2.webp","https://uauu.cat/media/collective/fotografia/marie-marry-me/3.webp","https://uauu.cat/media/collective/fotografia/marie-marry-me/4.webp","https://uauu.cat/media/collective/fotografia/marie-marry-me/5.webp","https://uauu.cat/media/collective/fotografia/marie-marry-me/6.webp","https://uauu.cat/media/collective/fotografia/marie-marry-me/7.webp","https://uauu.cat/media/collective/fotografia/marie-marry-me/8.webp"], "positions": ["top","top","top","top","center 20%","top","top","top"] },
+        { "name": "Atypical Wedding",         "tags": { "ca": "Fotografia", "es": "Fotografía", "en": "Photography" },                         "loc": "", "phone": "+34 605 884 296", "email": "info@atypicalphotos.com",    "social": "@atypicalwedding",         "note": null, "photos": ["https://uauu.cat/media/collective/fotografia/atypical-wedding/1.webp","https://uauu.cat/media/collective/fotografia/atypical-wedding/2.webp","https://uauu.cat/media/collective/fotografia/atypical-wedding/3.webp","https://uauu.cat/media/collective/fotografia/atypical-wedding/4.webp","https://uauu.cat/media/collective/fotografia/atypical-wedding/5.webp","https://uauu.cat/media/collective/fotografia/atypical-wedding/6.webp","https://uauu.cat/media/collective/fotografia/atypical-wedding/7.webp","https://uauu.cat/media/collective/fotografia/atypical-wedding/8.webp"], "positions": ["top","top","center 20%","center 20%","center 50%","top","top","top"] },
+        { "name": "Tarannà Estudi Creatiu",   "tags": { "ca": "Fotografia i vídeo", "es": "Fotografía y vídeo", "en": "Photography & video" }, "loc": "", "phone": "+34 660 237 757", "email": "hola@estuditaranna.com",     "social": "@taranna_estudicreatiu",   "note": null, "photos": ["https://uauu.cat/media/collective/fotografia/taranna/1.webp","https://uauu.cat/media/collective/fotografia/taranna/2.webp","https://uauu.cat/media/collective/fotografia/taranna/3.webp","https://uauu.cat/media/collective/fotografia/taranna/4.webp","https://uauu.cat/media/collective/fotografia/taranna/5.webp","https://uauu.cat/media/collective/fotografia/taranna/6.webp","https://uauu.cat/media/collective/fotografia/taranna/8.webp"] },
+        { "name": "Northmiles",               "tags": { "ca": "Fotografia", "es": "Fotografía", "en": "Photography" },                         "loc": "", "phone": "+34 611 197 979", "email": "hola@northmiles.com",        "social": "@northmiles",              "note": null, "photos": ["https://uauu.cat/media/collective/fotografia/northmiles/1.webp","https://uauu.cat/media/collective/fotografia/northmiles/2.webp","https://uauu.cat/media/collective/fotografia/northmiles/3.webp","https://uauu.cat/media/collective/fotografia/northmiles/4.webp","https://uauu.cat/media/collective/fotografia/northmiles/5.webp","https://uauu.cat/media/collective/fotografia/northmiles/6.webp","https://uauu.cat/media/collective/fotografia/northmiles/7.webp","https://uauu.cat/media/collective/fotografia/northmiles/8.webp"], "positions": ["top","top","top","top","top","center 50%","top","top"] },
+        { "name": "Elm Murcia",               "tags": { "ca": "Fotografia", "es": "Fotografía", "en": "Photography" },                         "loc": "", "phone": "+34 696 148 225", "email": "info@elmmurcia.com",         "social": "@elm.murcia",              "note": null, "photos": ["https://uauu.cat/media/collective/fotografia/elm-murcia/1.webp","https://uauu.cat/media/collective/fotografia/elm-murcia/2.webp","https://uauu.cat/media/collective/fotografia/elm-murcia/3.webp","https://uauu.cat/media/collective/fotografia/elm-murcia/4.webp","https://uauu.cat/media/collective/fotografia/elm-murcia/5.webp","https://uauu.cat/media/collective/fotografia/elm-murcia/6.webp","https://uauu.cat/media/collective/fotografia/elm-murcia/7.webp","https://uauu.cat/media/collective/fotografia/elm-murcia/8.webp"], "positions": ["center 50%","center 50%","center 50%","center 50%","center 30%","center 30%","center 50%","center 50%"] },
+        { "name": "Joel Caralt",              "tags": { "ca": "Fotografia", "es": "Fotografía", "en": "Photography" },                         "loc": "", "phone": "+34 654 705 026", "email": "joel.caralt@gmail.com",      "social": "@joelcaralt",              "note": null, "photos": ["https://uauu.cat/media/collective/fotografia/joel-caralt/1.webp","https://uauu.cat/media/collective/fotografia/joel-caralt/2.webp","https://uauu.cat/media/collective/fotografia/joel-caralt/3.webp","https://uauu.cat/media/collective/fotografia/joel-caralt/4.webp","https://uauu.cat/media/collective/fotografia/joel-caralt/5.webp","https://uauu.cat/media/collective/fotografia/joel-caralt/6.webp","https://uauu.cat/media/collective/fotografia/joel-caralt/7.webp","https://uauu.cat/media/collective/fotografia/joel-caralt/8.webp"], "positions": ["top","center 30%","center 30%","center 30%","top","center 30%","top","center 30%"] },
+        { "name": "Laura Chacón Photography", "tags": { "ca": "Fotografia", "es": "Fotografía", "en": "Photography" },                         "loc": "", "phone": "+34 649 412 783", "email": "info@laurachacon.es",        "social": "@laurachacon_photography", "note": null, "photos": ["https://uauu.cat/media/collective/fotografia/laura-chacon/1.webp","https://uauu.cat/media/collective/fotografia/laura-chacon/2.webp","https://uauu.cat/media/collective/fotografia/laura-chacon/3.webp","https://uauu.cat/media/collective/fotografia/laura-chacon/4.webp","https://uauu.cat/media/collective/fotografia/laura-chacon/5.webp","https://uauu.cat/media/collective/fotografia/laura-chacon/6.webp","https://uauu.cat/media/collective/fotografia/laura-chacon/7.webp"], "positions": ["top","center 30%","top","top","top","center 30%","center 30%"] }
+      ]
+    },
+    {
+      "id": "content-creators",
+      "carousel": true,
+      "video": "https://uauu.cat/media/collective/content_creator/memoir/memoir_7.mp4",
+      "collaborators": [
+        { "name": "Memoir Bella", "tags": { "ca": "Content Creator", "es": "Content Creator", "en": "Content Creator" }, "loc": "", "phone": "+34 644 530 070", "email": "hola.memoirbella@gmail.com", "web": "https://www.instagram.com/memoir.bella/", "social": "@memoir.bella", "socialFirst": true, "note": null, "videos": ["https://uauu.cat/media/collective/content_creator/memoir/memoir_1.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_2.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_3.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_4.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_5.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_7.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_8.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_9.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_10.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_11.mp4","https://uauu.cat/media/collective/content_creator/memoir/memoir_12.mp4"] },
+        { "name": "Idilia", "tags": { "ca": "Content Creator", "es": "Content Creator", "en": "Content Creator" }, "loc": "", "phone": "+34 625 887 876", "email": "idiliacontent@gmail.com", "web": "https://www.instagram.com/idiliacontent/", "social": "@idiliacontent", "socialFirst": true, "note": null, "videos": ["https://uauu.cat/media/collective/content_creator/idilia/idilia_3.mp4","https://uauu.cat/media/collective/content_creator/idilia/idilia_5.mp4","https://uauu.cat/media/collective/content_creator/idilia/idilia_1.webp","https://uauu.cat/media/collective/content_creator/idilia/idilia_4.mp4","https://uauu.cat/media/collective/content_creator/idilia/idilia_2.webp"], "positions": ["center","center","center","center 30%","center"] }
+      ]
+    },
+    {
+      "id": "cerimoniants",
+      "image": "https://uauu.cat/media/collective/portades/cerimoniants.webp",
+      "collaborators": [
+        { "name": "Sergi Atmetlla", "tags": { "ca": "Cerimoniant",              "es": "Oficiant",              "en": "Officiant" },               "loc": "CA · ES",      "phone": "+34 626 744 383", "email": "hola.nexuswedding@gmail.com", "web": "https://www.nexuswedding.com/",  "social": "@maestro_ceremonias_nexus", "socialFirst": true, "note": null, "image": "https://uauu.cat/media/collective/cerimoniants/nexus-wedding.webp" },
+        { "name": "Elena Nieto",    "tags": { "ca": "Cerimoniant i animació",   "es": "Oficiant y animación",  "en": "Officiant & entertainment" }, "loc": "",             "phone": "+34 623 513 503", "email": "info@soyelenanieto.com",      "web": "https://www.soyelenanieto.com/", "social": "@soyelenanieto",            "socialFirst": true, "note": null, "image": "https://uauu.cat/media/collective/cerimoniants/elena-nieto.webp" },
+        { "name": "Txema López",    "tags": { "ca": "Cerimoniant",              "es": "Oficiant",              "en": "Officiant" },               "loc": "CA · ES · EN", "phone": "+34 600 777 266", "email": "hola@bodacivil.org",          "web": "https://www.bodacivil.org/",     "social": "@bodacivil",               "socialFirst": true, "note": null, "image": "https://uauu.cat/media/collective/cerimoniants/txema-lopez.webp" }
+      ]
+    },
+    {
+      "id": "bellesa",
+      "carousel": true,
+      "image": "https://uauu.cat/media/collective/perruqueria/4.webp",
+      "collaborators": [
+        { "name": "La novia más bonita", "tags": { "ca": "Perruqueria i maquillatge", "es": "Peluquería y maquillaje", "en": "Hair & make-up" }, "loc": "", "phone": "+34 640 884 632", "email": "info@lanoviamasbonita.com", "web": "https://lanoviamasbonita.com/", "social": "@lanoviamasbonita.oficial", "socialFirst": true, "note": null, "photos": ["https://uauu.cat/media/collective/perruqueria/1.webp","https://uauu.cat/media/collective/perruqueria/2.webp","https://uauu.cat/media/collective/perruqueria/3.webp","https://uauu.cat/media/collective/perruqueria/4.webp","https://uauu.cat/media/collective/perruqueria/5.webp","https://uauu.cat/media/collective/perruqueria/6.webp"], "positions": ["top","center","top","center","center","top"] }
+      ]
+    },
+    {
+      "id": "finca",
+      "isVenuePicker": true,
+      "image": "https://uauu.cat/media/collective/portades/contactes.webp",
+      "collaborators": []
+    }
+  ],
+  "venueData": [
+    {
+      "id": "canmacia",
+      "image": "https://uauu.cat/media/fotos/finques/can-macia.webp",
+      "names": { "ca": "Can Macià", "es": "Can Macià", "en": "Can Macià" },
+      "contacts": [
+        { "types": { "ca": "DJ i Il·luminació",   "es": "DJ e Iluminación",    "en": "DJ & Lighting" },     "name": "Carlos Ruiz",      "phone": "+34 677 549 838", "note": null },
+        { "types": { "ca": "Cerimònia Religiosa", "es": "Ceremonia Religiosa", "en": "Religious Ceremony" }, "name": "Mossèn Eduard",    "phone": "+34 933 800 040", "note": null },
+        { "types": { "ca": "Floristeria",          "es": "Floristería",         "en": "Florist" },           "name": "Les Flors Igualada", "email": "lesflors1@gmail.com", "note": null }
+      ]
+    },
+    {
+      "id": "canalzina",
+      "image": "https://uauu.cat/media/fotos/finques/ca-n-alzina.webp",
+      "names": { "ca": "Ca n'Alzina", "es": "Ca n'Alzina", "en": "Ca n'Alzina" },
+      "contacts": [
+        { "types": { "ca": "DJ i Il·luminació",   "es": "DJ e Iluminación",    "en": "DJ & Lighting" },     "name": "Marc Serra",            "phone": "+34 618 391 525", "note": null },
+        { "types": { "ca": "Cerimònia Civil",      "es": "Ceremonia Civil",     "en": "Civil Ceremony" },    "name": "Ajuntament de Rubió",   "phone": "+34 938 094 181", "note": null },
+        { "types": { "ca": "Cerimònia Religiosa", "es": "Ceremonia Religiosa", "en": "Religious Ceremony" }, "name": "Mossèn Enric",          "phone": "+34 938 094 101", "note": { "ca": "Atenció: dimecres i diumenges a la tarda", "es": "Atención: miércoles y domingos por la tarde", "en": "Office hours: Wed & Sun afternoons" } },
+        { "types": { "ca": "Floristeria",          "es": "Floristería",         "en": "Florist" },           "name": "Les Flors Igualada",    "email": "lesflors1@gmail.com", "note": null }
+      ]
+    },
+    {
+      "id": "masvivencs",
+      "image": "https://uauu.cat/media/fotos/finques/mas-vivencs.webp",
+      "names": { "ca": "Mas Vivencs", "es": "Mas Vivencs", "en": "Mas Vivencs" },
+      "contacts": [
+        { "types": { "ca": "DJ i Il·luminació", "es": "DJ e Iluminación", "en": "DJ & Lighting" }, "name": "Adrián",             "phone": "+34 695 448 919", "note": null },
+        { "types": { "ca": "Floristeria",       "es": "Floristería",     "en": "Florist" },       "name": "Les Flors Igualada", "email": "lesflors1@gmail.com", "note": null }
+      ]
+    },
+    {
+      "id": "castelldetous",
+      "image": "https://uauu.cat/media/fotos/finques/castell-de-tous.webp",
+      "names": { "ca": "Castell de Tous", "es": "Castell de Tous", "en": "Castell de Tous" },
+      "contacts": [
+        { "types": { "ca": "DJ i Il·luminació",   "es": "DJ e Iluminación",    "en": "DJ & Lighting" },     "name": "Adrián",             "phone": "+34 695 448 919", "note": null },
+        { "types": { "ca": "Cerimònia Religiosa", "es": "Ceremonia Religiosa", "en": "Religious Ceremony" }, "name": "Padre Alejandro",    "phone": "+34 613 237 678", "note": { "ca": "Atenció: dimarts de 17:00h a 19:00h", "es": "Atención: martes de 17:00h a 19:00h", "en": "Office hours: Tue 17:00–19:00" } },
+        { "types": { "ca": "Floristeria",          "es": "Floristería",         "en": "Florist" },           "name": "Les Flors Igualada", "email": "lesflors1@gmail.com", "note": null }
+      ]
+    }
+  ]
+}

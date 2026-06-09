@@ -1,5 +1,5 @@
-# index.html: always revalidate with server (no stale cache)
-<FilesMatch "^index\.html$">
+# index.html + data.json: always revalidate with server (no stale cache)
+<FilesMatch "^(index\.html|data\.json)$">
   Header set Cache-Control "no-cache, must-revalidate"
   Header unset ETag
   FileETag MTime Size

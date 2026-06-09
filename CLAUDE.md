@@ -73,56 +73,56 @@ Ver `_refs/referencia-estilo.jpg` para el estilo visual de referencia.
 
 ## Arquitectura del proyecto
 
-Todo el proyecto es un único `index.html` con CSS, JS y datos completamente inline. No hay build system, ni bundler, ni archivos JS/CSS externos propios. Los assets estáticos son fonts (locales, carpeta `fonts/`) y logos (`logos/`). Los medias (vídeos e imágenes de colaboradores) se sirven desde `https://uauu.cat/media/collective/`.
+El proyecto tiene un único `index.html` con CSS y JS inline, sin build system ni bundler. Los datos de colaboradores y venues viven en **`data.json`** (raíz del proyecto), cargado de forma asíncrona al inicio. Los assets estáticos son fonts (locales, carpeta `fonts/`) y logos (`logos/`). Los medias (vídeos e imágenes de colaboradores) se sirven desde `https://uauu.cat/media/collective/`.
+
+**Para añadir o editar colaboradores: editar únicamente `data.json`**, no `index.html`.
 
 ## Estructura de datos — colaboradores
 
-Los datos viven en el array `categoryData` dentro del JS inline de `index.html`. Cada sección tiene esta forma:
+Los datos viven en `data.json`, con dos arrays de primer nivel: `categoryData` y `venueData`. Cada sección de `categoryData` tiene esta forma:
 
-```js
+```json
 {
-  id: 'slug-seccion',
-  carousel: true,          // true = cards con carrusel de vídeo/foto
-  video: 'url.mp4',        // vídeo de portada de la sección (solo si carousel: true)
-  image: 'url.webp',       // imagen de portada (si no tiene vídeo)
-  collaborators: [ ... ]
+  "id": "slug-seccion",
+  "carousel": true,
+  "video": "url.mp4",
+  "image": "url.webp",
+  "collaborators": []
 }
 ```
 
 ### Colaborador con carrusel de vídeo/imagen mixto
 
-```js
+```json
 {
-  name: 'Nombre',
-  tags: { ca: '...', es: '...', en: '...' },
-  loc: '',                  // idiomas si aplica, ej: 'CA · ES · EN'
-  phone: '+34 600 000 000',
-  email: 'mail@example.com',
-  web: 'https://...',
-  social: '@handle',
-  socialFirst: true,        // muestra Instagram como primer enlace
-  note: null,               // o { ca: '...', es: '...', en: '...' } para descuentos/notas
-  videos: ['url1.mp4', 'url2.mp4', 'url3.webp', ...],  // soporta .mp4 y .webp/.jpg mezclados
-  positions: ['center', 'center', 'center 30%', ...]   // object-position por índice (opcional)
+  "name": "Nombre",
+  "tags": { "ca": "...", "es": "...", "en": "..." },
+  "loc": "",
+  "phone": "+34 600 000 000",
+  "email": "mail@example.com",
+  "web": "https://...",
+  "social": "@handle",
+  "socialFirst": true,
+  "note": null,
+  "videos": ["url1.mp4", "url2.mp4", "url3.webp"],
+  "positions": ["center", "center", "center 30%"]
 }
 ```
 
 ### Colaborador con carrusel de fotos
 
-```js
+```json
 {
-  // ... campos comunes ...
-  photos: ['url1.webp', ...],
-  positions: ['top', 'center 20%', ...]   // object-position por índice (opcional)
+  "photos": ["url1.webp"],
+  "positions": ["top", "center 20%"]
 }
 ```
 
 ### Colaborador con imagen única
 
-```js
+```json
 {
-  // ... campos comunes ...
-  image: 'url.webp'
+  "image": "url.webp"
 }
 ```
 
@@ -133,10 +133,10 @@ Ejemplo: `https://uauu.cat/media/collective/content_creator/memoir/memoir_1.mp4`
 
 ## Sistema de caché
 
-- **`.htaccess`**: `index.html` con `Cache-Control: no-cache, must-revalidate`. Assets estáticos (fonts, logos) con caché de 1 año.
+- **`.htaccess`**: `index.html` y `data.json` con `Cache-Control: no-cache, must-revalidate`. Assets estáticos (fonts, logos) con caché de 1 año.
 - **JS inline** (al final del `<body>`): en el evento `visibilitychange`, hace un `HEAD` request a `index.html` comparando el `ETag`/`Last-Modified`. Si cambió, recarga automáticamente. Mínimo 5 min entre checks.
 
-Para forzar actualización en todos los usuarios: simplemente despliega el nuevo `index.html`.
+Para forzar actualización en todos los usuarios: despliega `data.json` (si solo cambian datos) o `index.html` (si cambia la UI).
 
 ## Patrones técnicos importantes
 
