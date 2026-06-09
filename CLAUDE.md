@@ -68,3 +68,78 @@
 ## Referencias visuales
 
 Ver `_refs/referencia-estilo.jpg` para el estilo visual de referencia.
+
+---
+
+## Arquitectura del proyecto
+
+Todo el proyecto es un único `index.html` con CSS, JS y datos completamente inline. No hay build system, ni bundler, ni archivos JS/CSS externos propios. Los assets estáticos son fonts (locales, carpeta `fonts/`) y logos (`logos/`). Los medias (vídeos e imágenes de colaboradores) se sirven desde `https://uauu.cat/media/collective/`.
+
+## Estructura de datos — colaboradores
+
+Los datos viven en el array `categoryData` dentro del JS inline de `index.html`. Cada sección tiene esta forma:
+
+```js
+{
+  id: 'slug-seccion',
+  carousel: true,          // true = cards con carrusel de vídeo/foto
+  video: 'url.mp4',        // vídeo de portada de la sección (solo si carousel: true)
+  image: 'url.webp',       // imagen de portada (si no tiene vídeo)
+  collaborators: [ ... ]
+}
+```
+
+### Colaborador con carrusel de vídeo/imagen mixto
+
+```js
+{
+  name: 'Nombre',
+  tags: { ca: '...', es: '...', en: '...' },
+  loc: '',                  // idiomas si aplica, ej: 'CA · ES · EN'
+  phone: '+34 600 000 000',
+  email: 'mail@example.com',
+  web: 'https://...',
+  social: '@handle',
+  socialFirst: true,        // muestra Instagram como primer enlace
+  note: null,               // o { ca: '...', es: '...', en: '...' } para descuentos/notas
+  videos: ['url1.mp4', 'url2.mp4', 'url3.webp', ...],  // soporta .mp4 y .webp/.jpg mezclados
+  positions: ['center', 'center', 'center 30%', ...]   // object-position por índice (opcional)
+}
+```
+
+### Colaborador con carrusel de fotos
+
+```js
+{
+  // ... campos comunes ...
+  photos: ['url1.webp', ...],
+  positions: ['top', 'center 20%', ...]   // object-position por índice (opcional)
+}
+```
+
+### Colaborador con imagen única
+
+```js
+{
+  // ... campos comunes ...
+  image: 'url.webp'
+}
+```
+
+### URLs de medias
+
+Patrón: `https://uauu.cat/media/collective/{categoria}/{colaborador}/{archivo}`  
+Ejemplo: `https://uauu.cat/media/collective/content_creator/memoir/memoir_1.mp4`
+
+## Sistema de caché
+
+- **`.htaccess`**: `index.html` con `Cache-Control: no-cache, must-revalidate`. Assets estáticos (fonts, logos) con caché de 1 año.
+- **JS inline** (al final del `<body>`): en el evento `visibilitychange`, hace un `HEAD` request a `index.html` comparando el `ETag`/`Last-Modified`. Si cambió, recarga automáticamente. Mínimo 5 min entre checks.
+
+Para forzar actualización en todos los usuarios: simplemente despliega el nuevo `index.html`.
+
+## Patrones técnicos importantes
+
+- **Hover scale solo en cards de imagen única**: `.collab-photo:not([data-carousel]) img { transform: scale(1.06) }`. Las imgs dentro de carruseles NO deben escalar en hover — las imgs de slides no visibles se desplazarían ~3% hacia el área visible.
+- **Overflow clip del carrusel**: `.collab-photo` tiene `transform: translateZ(0)` para forzar compositing layer y que `overflow: hidden` funcione correctamente en Safari cuando el padre `.collab-card` tiene transform.
+- **Slides del carrusel**: usan `flex: 0 0 100%` (no `width: 100%`) para evitar ambigüedad en el cálculo de tamaño en flex containers.

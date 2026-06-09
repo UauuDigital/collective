@@ -1661,5 +1661,32 @@
     setLang('ca');
   </script>
 
+
+  <script>
+    (() => {
+      let knownETag = null;
+      let lastCheck = 0;
+      const MIN_INTERVAL = 5 * 60 * 1000; // check at most every 5 min
+
+      async function checkVersion() {
+        const now = Date.now();
+        if (now - lastCheck < MIN_INTERVAL) return;
+        lastCheck = now;
+        try {
+          const res = await fetch(location.pathname, { method: 'HEAD', cache: 'no-store' });
+          const tag = res.headers.get('etag') || res.headers.get('last-modified');
+          if (!tag) return;
+          if (knownETag === null) { knownETag = tag; return; }
+          if (tag !== knownETag) location.reload();
+        } catch {}
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') checkVersion();
+      });
+
+      checkVersion();
+    })();
+  </script>
 </body>
 </html>
