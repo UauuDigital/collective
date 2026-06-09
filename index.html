@@ -488,12 +488,13 @@
       overflow: hidden;
       background: #ddd;
       flex-shrink: 0;
+      transform: translateZ(0);
     }
 
 
     .collab-photo--empty { background: var(--dark); }
 
-    .collab-photo img {
+    .collab-photo:not([data-carousel]) img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -502,7 +503,7 @@
       transition: transform 0.55s var(--ease);
     }
 
-    .collab-card:hover .collab-photo img { transform: scale(1.06); }
+    .collab-card:hover .collab-photo:not([data-carousel]) img { transform: scale(1.06); }
 
     .collab-body {
       padding: 18px 20px;
@@ -601,14 +602,16 @@
     ───────────────────────────────────────── */
     .carousel-track {
       display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
       transition: transform 0.42s var(--ease);
       height: 100%;
     }
 
     .carousel-slide {
-      flex-shrink: 0;
-      width: 100%;
+      flex: 0 0 100%;
       height: 100%;
+      min-width: 0;
     }
 
     .carousel-slide img, .carousel-slide video {
@@ -819,7 +822,7 @@
       .cat-card:hover { transform: none; box-shadow: none; }
       .cat-card:hover img { transform: none; }
       .collab-card:hover { transform: none; box-shadow: none; }
-      .collab-card:hover .collab-photo img { transform: none; }
+      .collab-card:hover .collab-photo:not([data-carousel]) img { transform: none; }
     }
   </style>
 </head>
@@ -1020,9 +1023,10 @@
       {
         id: 'content-creators',
         carousel: true,
-        video: 'https://uauu.cat/media/collective/content_creator/memoir_7.mp4',
+        video: 'https://uauu.cat/media/collective/content_creator/memoir/memoir_7.mp4',
         collaborators: [
-          { name: 'Memoir Bella', tags: { ca: 'Content Creator', es: 'Content Creator', en: 'Content Creator' }, loc: '', phone: '+34 644 530 070', email: 'hola.memoirbella@gmail.com', web: 'https://www.instagram.com/memoir.bella/', social: '@memoir.bella', socialFirst: true, note: null, videos: ['https://uauu.cat/media/collective/content_creator/memoir_1.mp4','https://uauu.cat/media/collective/content_creator/memoir_2.mp4','https://uauu.cat/media/collective/content_creator/memoir_3.mp4','https://uauu.cat/media/collective/content_creator/memoir_4.mp4','https://uauu.cat/media/collective/content_creator/memoir_5.mp4','https://uauu.cat/media/collective/content_creator/memoir_7.mp4','https://uauu.cat/media/collective/content_creator/memoir_8.mp4','https://uauu.cat/media/collective/content_creator/memoir_9.mp4','https://uauu.cat/media/collective/content_creator/memoir_10.mp4','https://uauu.cat/media/collective/content_creator/memoir_11.mp4','https://uauu.cat/media/collective/content_creator/memoir_12.mp4'] },
+          { name: 'Memoir Bella', tags: { ca: 'Content Creator', es: 'Content Creator', en: 'Content Creator' }, loc: '', phone: '+34 644 530 070', email: 'hola.memoirbella@gmail.com', web: 'https://www.instagram.com/memoir.bella/', social: '@memoir.bella', socialFirst: true, note: null, videos: ['https://uauu.cat/media/collective/content_creator/memoir/memoir_1.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_2.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_3.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_4.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_5.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_7.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_8.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_9.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_10.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_11.mp4','https://uauu.cat/media/collective/content_creator/memoir/memoir_12.mp4'] },
+          { name: 'Idilia', tags: { ca: 'Content Creator', es: 'Content Creator', en: 'Content Creator' }, loc: '', phone: '+34 625 887 876', email: 'idiliacontent@gmail.com', web: 'https://www.instagram.com/idiliacontent/', social: '@idiliacontent', socialFirst: true, note: null, videos: ['https://uauu.cat/media/collective/content_creator/idilia/idilia_3.mp4','https://uauu.cat/media/collective/content_creator/idilia/idilia_5.mp4','https://uauu.cat/media/collective/content_creator/idilia/idilia_1.webp','https://uauu.cat/media/collective/content_creator/idilia/idilia_4.mp4','https://uauu.cat/media/collective/content_creator/idilia/idilia_2.webp'], positions: ['center','center','center','center 30%','center'] },
         ]
       },
       {
@@ -1293,8 +1297,14 @@
         let photoHtml;
         if (opts.carousel && c.videos && c.videos.length > 0) {
           const slides = c.videos.map((v, i) => {
+            const pos = c.positions ? c.positions[i] || 'center' : 'center';
+            const isImg = /\.(webp|jpg|jpeg|png)$/i.test(v);
+            if (isImg) {
+              const srcAttr = i === 0 ? `src="${v}"` : `data-src="${v}"`;
+              return `<div class="carousel-slide"><img ${srcAttr} alt="${c.name}" loading="lazy" decoding="async" style="object-fit:cover;object-position:${pos};width:100%;height:100%"></div>`;
+            }
             const srcAttr = i === 0 ? `src="${v}" autoplay` : `data-src="${v}"`;
-            return `<div class="carousel-slide"><video ${srcAttr} muted loop playsinline style="object-position:center"></video></div>`;
+            return `<div class="carousel-slide"><video ${srcAttr} muted loop playsinline style="object-position:${pos}"></video></div>`;
           }).join('');
           const dots = c.videos.map((_, i) => `<button class="carousel-dot${i === 0 ? ' is-active' : ''}" data-idx="${i}" aria-label="Vídeo ${i+1}"></button>`).join('');
           photoHtml = `<div class="collab-photo" style="position:relative;overflow:hidden;" data-carousel>
@@ -1372,7 +1382,9 @@
           loadSlide((current + 1) % total);
           track.style.transform = `translateX(-${current * 100}%)`;
           dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
-          track.querySelectorAll('.carousel-slide video').forEach((v, i) => {
+          track.querySelectorAll('.carousel-slide').forEach((slide, i) => {
+            const v = slide.querySelector('video');
+            if (!v) return;
             if (i === current) { if (v.src) v.play(); }
             else v.pause();
           });
