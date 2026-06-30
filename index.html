@@ -988,6 +988,7 @@
           { name: 'Content\nCreators',          desc: 'Creadors de contingut especialitzats en casaments.' },
           { name: 'Cerimoniants',               desc: 'Professionals per a la cerimònia civil o simbòlica.' },
           { name: 'Perruqueria\ni maquillatge', desc: 'Estilistes per a la núvia i el nuvi.' },
+          { name: 'Música\nen directe',              desc: 'Grups i artistes de música en viu per a la vostra celebració.' },
           { name: "Contactes\nd'interès",         desc: 'Contactes específics de la vostra finca.' },
         ]
       },
@@ -1009,6 +1010,7 @@
           { name: 'Content\nCreators',        desc: 'Creadores de contenido especializados en bodas.' },
           { name: 'Oficiantes',               desc: 'Profesionales para la ceremonia civil o simbólica.' },
           { name: 'Peluquería\ny maquillaje', desc: 'Estilistas para la novia y el novio.' },
+          { name: 'Música\nen directo',           desc: 'Grupos y artistas de música en vivo para vuestra celebración.' },
           { name: 'Contactos\nde interés',      desc: 'Contactos específicos de vuestra finca.' },
         ]
       },
@@ -1030,6 +1032,7 @@
           { name: 'Content\nCreators',    desc: 'Content creators specialised in weddings.' },
           { name: 'Officiants',           desc: 'Professionals for civil or symbolic ceremonies.' },
           { name: 'Hair\n& make-up',      desc: 'Stylists for the bride and groom.' },
+          { name: 'Live\nmusic',             desc: 'Bands and live music artists for your celebration.' },
           { name: 'Contacts\nof interest',  desc: 'Specific contacts for your venue.' },
         ]
       }
@@ -1196,8 +1199,9 @@
           </div>`;
         } else {
           const img = c.photos ? c.photos[0] : c.image;
+          const posStyle = c.position ? ` style="object-position:${c.position}"` : '';
           photoHtml = img
-            ? `<div class="collab-photo"><img src="${img}" alt="${c.name}" loading="lazy" decoding="async"></div>`
+            ? `<div class="collab-photo"><img src="${img}" alt="${c.name}" loading="lazy" decoding="async"${posStyle}></div>`
             : `<div class="collab-photo collab-photo--empty"></div>`;
         }
 

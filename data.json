@@ -80,6 +80,25 @@
       ]
     },
     {
+      "id": "musica",
+      "image": "https://uauu.cat/media/collective/musica/albert_nieto.webp",
+      "collaborators": [
+        {
+          "name": "Paraíso Locura",
+          "tags": { "ca": "Música en directe", "es": "Música en directo", "en": "Live music" },
+          "loc": "",
+          "phone": "+34 600 292 865",
+          "email": "hola@paraisolocuramusic.com",
+          "web": null,
+          "social": "@paraisolocura_music",
+          "socialFirst": true,
+          "note": null,
+          "position": "center 20%",
+          "image": "https://uauu.cat/media/collective/musica/albert_nieto.webp"
+        }
+      ]
+    },
+    {
       "id": "finca",
       "isVenuePicker": true,
       "image": "https://uauu.cat/media/collective/portades/contactes.webp",
