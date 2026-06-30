@@ -1405,9 +1405,9 @@
     function getActiveNavIndex() {
       if (!document.getElementById('view-index').classList.contains('is-hidden')) return null;
       const fincaIdx = categoryData.findIndex(c => c.isVenuePicker);
-      if (!document.getElementById('view-venues').classList.contains('is-hidden')) return fincaIdx;
-      if (!document.getElementById('view-venue-detail').classList.contains('is-hidden')) return fincaIdx;
-      return activeCatIndex;
+      if (!document.getElementById('view-venues').classList.contains('is-hidden')) return fincaIdx + 1;
+      if (!document.getElementById('view-venue-detail').classList.contains('is-hidden')) return fincaIdx + 1;
+      return activeCatIndex === null ? null : activeCatIndex + 1;
     }
 
     function updateMenuHighlight() {
