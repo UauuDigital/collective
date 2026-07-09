@@ -81,7 +81,7 @@
     },
     {
       "id": "musica",
-      "image": "https://uauu.cat/media/collective/musica/albert_nieto.webp",
+      "image": "https://uauu.cat/media/collective/musica/guitarrista-boda.webp",
       "collaborators": [
         {
           "name": "Paraíso Locura",
@@ -93,8 +93,8 @@
           "social": "@paraisolocura_music",
           "socialFirst": true,
           "note": null,
-          "position": "center 20%",
-          "image": "https://uauu.cat/media/collective/musica/albert_nieto.webp"
+          "position": "center 70%",
+          "image": "https://uauu.cat/media/collective/musica/love-guitarristes.webp"
         }
       ]
     },
